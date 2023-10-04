@@ -1,7 +1,7 @@
 
-php artisan migrate
-// Migrations divided to patches to rollback without errors 
+<p>php artisan migrate</p>
+<b>Migrations divided into patches to rollback without errors </b><br>
 
-php artisan db:seed --class=UsersTableSeeder
+<p>php artisan db:seed --class=UsersTableSeeder</p>
 
-php artisan db:seed --class=AdminsTableSeeder
+<p>php artisan db:seed --class=AdminsTableSeeder</p>
