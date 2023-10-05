@@ -30,6 +30,14 @@ class UpdateStatisticsJob implements ShouldQueue
     }
 
     /**
+     * @return int
+     */
+    public function getAssignedToUserId(): int
+    {
+        return $this->assignedToUserId;
+    }
+  
+    /**
      * Execute the job.
      *
      * @return void

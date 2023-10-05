@@ -1,0 +1,6 @@
+From [37;44;1mtests/Feature/StatisticsTest.php:38[39;49;22m:
+    [34m36[39m: 
+    [34m37[39m: [33m        [39m$response [33m= [39m$this[33m->[39mget[33m([39m[32m'/statistics'[39m[33m);[39m
+  [31m>[39m [34m38[39m: [33m        eval(\Psy\sh());[39m
+    [34m39[39m: 
+    [34m40[39m: [33m        [39m$response[33m->[39massertStatus[33m([39m[35m200[39m[33m);[39m

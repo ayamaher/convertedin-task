@@ -40,23 +40,35 @@ class TaskController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'assigned_to' => 'required|exists:users,id',
-            'assigned_by' => 'required|exists:admins,id',
-        ]);
-        $assignedToUserId = $request->input('assigned_to');
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|max:255',
+                'description' => 'required',
+                'assigned_to_id' => 'required|exists:users,id',
+                'assigned_by_id' => 'required|exists:admins,id',
+            ]);
 
-        Task::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'assigned_to_id' => $validatedData['assigned_to'],
-            'assigned_by_id' => $validatedData['assigned_by'],
-        ]);
+            $assignedToUserId = $request->input('assigned_to_id');
 
-        UpdateStatisticsJob::dispatchAfterResponse($assignedToUserId);
+            $task = Task::create([
+                'title' => $validatedData['title'],
+                'description' => $validatedData['description'],
+                'assigned_to_id' => $validatedData['assigned_to_id'],
+                'assigned_by_id' => $validatedData['assigned_by_id'],
+            ]);
 
-        return redirect()->route('task.list')->with('success', 'Task created successfully');
+             UpdateStatisticsJob::dispatchAfterResponse($assignedToUserId);
+
+            $response['type'] = 'success';
+            $response['message'] = $task->title . " Created Successfully";
+
+        }catch (\Exception $e){
+            $response['type'] = 'error';
+            $response['message'] = $e->getMessage();
+        }
+
+        session()->flash('response', $response);
+
+        return redirect()->route('task.list');
     }
 }

@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class StatisticsController extends Controller
 {
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
-        // Fetch top 10 users with the highest task counts
-        $topUsers = User::withCount('tasks')->orderByDesc('tasks_count')->take(10)->get();
+       $topUsers = User::withCount('tasks')->orderBy('tasks_count', 'DESC')->take(10)->get();
+        return view('statistics.index', ['topUsers' => $topUsers]);
 
-        return view('statistics.index', compact('topUsers'));
     }
 }
