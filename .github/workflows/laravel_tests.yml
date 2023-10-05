@@ -1,0 +1,30 @@
+name: Laravel Tests
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  laravel_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Install Dependencies
+        run: composer install
+
+      - name: Run Tests
+        run: php artisan test
+
+      - name: Notify on Failure
+        if: failure()
+        run: echo "Tests failed, please investigate."
