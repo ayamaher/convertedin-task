@@ -2,40 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateStatisticsJob;
 use App\Models\Admin;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
 
-    public function index()
+
+    /**
+     * @return View
+     */
+    public function index(): View
     {
         $tasks = Task::paginate(10);
         return view('tasks.index', compact('tasks'));
     }
 
-    public function create()
+    /**
+     * @return View
+     */
+    public function create(): View
     {
-        // Fetch data for dropdowns (e.g., admin names and assigned users)
         $admins = Admin::all();
         $users = User::all();
 
         return view('tasks.create', compact('admins', 'users'));
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
-        // Validate the form data
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'assigned_to' => 'required|exists:users,id', // Ensure it exists in the 'users' table
-            'assigned_by' => 'required|exists:admins,id', // Ensure it exists in the 'admins' table
+            'assigned_to' => 'required|exists:users,id',
+            'assigned_by' => 'required|exists:admins,id',
         ]);
+        $assignedToUserId = $request->input('assigned_to');
 
-        // Create a new task using the validated data
         Task::create([
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
@@ -43,7 +55,8 @@ class TaskController extends Controller
             'assigned_by_id' => $validatedData['assigned_by'],
         ]);
 
-        // Redirect the user after successfully creating the task
+        UpdateStatisticsJob::dispatchAfterResponse($assignedToUserId);
+
         return redirect()->route('task.list')->with('success', 'Task created successfully');
     }
 }

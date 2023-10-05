@@ -17,10 +17,12 @@ class Task extends Model
         'assigned_by_id',
     ];
 
+    public $timestamps = true;
+
     /**
      * @return BelongsTo
      */
-    public function assignedTo()
+    public function assignedTo(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_to_id');
     }
@@ -28,7 +30,7 @@ class Task extends Model
     /**
      * @return BelongsTo
      */
-    public function assignedBy()
+    public function assignedBy(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'assigned_by_id');
     }

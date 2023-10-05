@@ -1,4 +1,4 @@
-@extends('layouts.app') <!-- Assuming you have a master layout file -->
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -18,13 +18,13 @@
                 <tr>
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->description }}</td>
-                    <td>{{ $task->assignedTo->name }}</td> <!-- Assuming assignedTo is the relationship with User model -->
-                    <td>{{ $task->assignedBy->name }}</td> <!-- Assuming assignedBy is the relationship with Admin model -->
+                    <td>{{ $task->assignedTo->name }}</td>
+                    <td>{{ $task->assignedBy->name }}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
 
-        {{ $tasks->links() }}
+        {{ $tasks->links('pagination::bootstrap-4') }}
     </div>
 @endsection
