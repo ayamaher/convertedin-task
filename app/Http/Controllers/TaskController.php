@@ -44,19 +44,21 @@ class TaskController extends Controller
             $validatedData = $request->validate([
                 'title' => 'required|max:255',
                 'description' => 'required',
-                'assigned_to' => 'required|exists:users,id',
-                'assigned_by' => 'required|exists:admins,id',
+                'assigned_to_id' => 'required|exists:users,id',
+                'assigned_by_id' => 'required|exists:admins,id',
             ]);
-            $assignedToUserId = $request->input('assigned_to');
+
+            $assignedToUserId = $request->input('assigned_to_id');
 
             $task = Task::create([
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
-                'assigned_to_id' => $validatedData['assigned_to'],
-                'assigned_by_id' => $validatedData['assigned_by'],
+                'assigned_to_id' => $validatedData['assigned_to_id'],
+                'assigned_by_id' => $validatedData['assigned_by_id'],
             ]);
 
-            UpdateStatisticsJob::dispatchAfterResponse($assignedToUserId);
+             UpdateStatisticsJob::dispatchAfterResponse($assignedToUserId);
+
             $response['type'] = 'success';
             $response['message'] = $task->title . " Created Successfully";
 

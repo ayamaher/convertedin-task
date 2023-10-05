@@ -10,9 +10,9 @@ use Illuminate\Contracts\View\View;
 class StatisticsController extends Controller
 {
     /**
-     * @return Application|Factory|View
+     * @return View
      */
-    public function index(): View|Factory|Application
+    public function index(): View
     {
        $topUsers = User::withCount('tasks')->orderBy('tasks_count', 'DESC')->take(10)->get();
         return view('statistics.index', ['topUsers' => $topUsers]);

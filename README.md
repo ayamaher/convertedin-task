@@ -20,4 +20,8 @@
 <h3>migrate Testing DB</h3>
 <p>php artisan migrate --database=convertedin_db_testing</p>
 
+<h3>Execute All tests</h3>
+<p>php artisan test</p>
 
+<h3>Or/h3>
+<p>./vendor/bin/phpunit tests/Feature</p>

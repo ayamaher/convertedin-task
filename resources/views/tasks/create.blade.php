@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="assigned_to">Assigned To</label>
-                <select name="assigned_to" id="assigned_to" class="form-control" required>
+                <select name="assigned_to_id" id="assigned_to" class="form-control" required>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="assigned_by">Assigned By</label>
-                <select name="assigned_by" id="assigned_by" class="form-control" required>
+                <select name="assigned_by_id" id="assigned_by" class="form-control" required>
                     @foreach ($admins as $admin)
                         <option value="{{ $admin->id }}">{{ $admin->name }}</option>
                     @endforeach
