@@ -18,4 +18,4 @@ use \App\Http\Controllers\StatisticsController;
 Route::get('/', [TaskController::class, 'create'])->name('task.create');
 Route::post('/tasks',  [TaskController::class, 'store'])->name('task.store');
 Route::get('/tasks',  [TaskController::class, 'index'])->name('task.list');
-Route::get('/statistics',  [StatisticsController::class, 'index'])->name('statistics');
+Route::get('/statistics',  [StatisticsController::class, 'index'])->name('statistics.list');

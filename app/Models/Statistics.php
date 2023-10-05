@@ -9,9 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Statistics extends Model
 {
     use HasFactory;
+
+    protected $table = "statistics";
+
     protected $fillable = [
         'user_id',
-        'tasks_count'
+        'task_count'
     ];
     public $timestamps = true;
     /**
@@ -19,6 +22,6 @@ class Statistics extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

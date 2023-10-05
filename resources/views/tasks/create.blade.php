@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Create Task</h1>
+        <h2>Create Task</h2>
 
         <form action="{{ route('task.store') }}" method="POST">
             @csrf
