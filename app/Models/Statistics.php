@@ -15,8 +15,11 @@ class Statistics extends Model
     protected $fillable = [
         'user_id',
         'task_count'
+
     ];
+  
     public $timestamps = true;
+  
     /**
      * @return BelongsTo
      */

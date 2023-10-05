@@ -16,5 +16,6 @@ class StatisticsController extends Controller
     {
        $topUsers = User::withCount('tasks')->orderBy('tasks_count', 'DESC')->take(10)->get();
         return view('statistics.index', ['topUsers' => $topUsers]);
+
     }
 }
