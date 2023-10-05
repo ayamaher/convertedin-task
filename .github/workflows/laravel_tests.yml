@@ -28,3 +28,9 @@ jobs:
       - name: Notify on Failure
         if: failure()
         run: echo "Tests failed, please investigate."
+
+      - name: Copy .env file for Testing
+        run: cp .env.example .env.testing
+
+      - name: Set up Database for Testing
+        run: php artisan migrate --env=convertedin_db_testing --force
