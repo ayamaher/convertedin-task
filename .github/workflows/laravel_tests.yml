@@ -19,6 +19,13 @@ jobs:
         with:
           php-version: '8.0.2'
 
+      - name: Run my script
+        env:
+          CIS: ${{ secrets.secret123 }}
+        run: |
+          # Access the environment variable
+          echo $CIS
+
       - name: Copy .env File
         run: cp .env.example .env
 
