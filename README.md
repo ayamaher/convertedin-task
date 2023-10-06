@@ -23,6 +23,6 @@
 <h3>Execute All tests</h3>
 <p>php artisan test</p>
 
-<h3>Or/h3>
+<h3>Or</h3>
 <p>./vendor/bin/phpunit tests/Feature</p>
 
