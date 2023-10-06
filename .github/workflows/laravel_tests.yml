@@ -19,10 +19,12 @@ jobs:
         with:
           php-version: '8.0.2'
 
-      - name: Install SQLite PDO driver
-        run: |
-          sudo apt-get install -y php8.0-sqlite3
-          sudo service apache2 restart
+      - name: Set up PHP and enable SQLite PDO driver
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0.2
+          coverage: none  # Disable code coverage to speed up setup
+          extensions: pdo_sqlite,sqlite3  # Enable the SQLite PDO driver
 
       - name: Run my script
         env:
