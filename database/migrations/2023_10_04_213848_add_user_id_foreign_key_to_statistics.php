@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('statistics', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->default(0);
 
             // Define foreign key constraint
             $table->foreign('user_id')->references('id')->on('users');
