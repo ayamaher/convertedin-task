@@ -21,7 +21,7 @@ jobs:
 
       - name: Run my script
         env:
-          CIS: ${{ secrets.secret123 }}
+          CIS: ${{ secrets.CIS }}
         run: |
           # Access the environment variable
           echo $CIS
