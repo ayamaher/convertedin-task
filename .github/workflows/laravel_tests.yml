@@ -32,7 +32,7 @@ jobs:
         run: touch database/database.sqlite
 
       - name: Run Migrations
-        run: php artisan migrate --force
+        run: php artisan migrate --database=sqlite_testing --force
 
       - name: Cache Configuration
         run: php artisan config:cache
