@@ -31,11 +31,9 @@ jobs:
           DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
           DB_DATABASE: ${{ secrets.DB_DATABASE }}
         run: |
+          cp .env.testing .env
           echo $DB_CONNECTION
           echo $DB_DATABASE
-
-      - name: Copy .env File
-        run: cp .env.example .env
 
       - name: Install Dependencies
         run: composer install
