@@ -28,8 +28,12 @@ class TaskController extends Controller
      */
     public function create(): View
     {
+
         $admins = Admin::all();
-        $users = User::all();
+        $cacheKey = 'user_list';
+        $users = cache($cacheKey, function () {
+            return User::all();
+        });
 
         return view('tasks.create', compact('admins', 'users'));
     }
