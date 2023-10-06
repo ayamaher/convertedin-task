@@ -18,7 +18,7 @@
 <p>php artisan serve</p>
 
 <h3>migrate Testing DB</h3>
-<p>php artisan migrate --database=convertedin_db_testing</p>
+<p>php artisan migrate --database=testing</p>
 
 <h3>Execute All tests</h3>
 <p>php artisan test</p>

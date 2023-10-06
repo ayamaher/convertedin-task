@@ -17,9 +17,9 @@ class Statistics extends Model
         'task_count'
 
     ];
-  
+
     public $timestamps = true;
-  
+
     /**
      * @return BelongsTo
      */

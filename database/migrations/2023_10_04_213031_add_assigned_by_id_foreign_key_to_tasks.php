@@ -14,7 +14,7 @@ class AddAssignedByIdForeignKeyToTasks extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->unsignedBigInteger('assigned_by_id');
+            $table->unsignedBigInteger('assigned_by_id')->default(0);
             $table->foreign('assigned_by_id')
                 ->references('id')
                 ->on('admins')
