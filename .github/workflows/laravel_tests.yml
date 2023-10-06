@@ -28,10 +28,11 @@ jobs:
 
       - name: Run my script
         env:
-          CIS: ${{ secrets.CIS }}
+          DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
         run: |
-          # Access the environment variable
-          echo $CIS
+          echo $DB_CONNECTION
+          echo $DB_DATABASE
 
       - name: Copy .env File
         run: cp .env.example .env
